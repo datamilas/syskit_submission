@@ -3,7 +3,6 @@ import numpy as np
 import streamlit as st
 import altair as alt
 import re
-import sqlite3
 from pathlib import Path
 
 
@@ -41,10 +40,9 @@ ACTION_FLAG_OPTIONS = {
 def load_data():
     base_dir = Path(__file__).resolve().parents[1]
     results_dir = base_dir / "results"
-    db_path = base_dir / "notebooks" / "saas_dataset.sqlite"
+    events_path = base_dir / "data" / "events.csv"
     tenant_scores = pd.read_csv(results_dir / "tenant_scores_snapshot_2024_06_30.csv")
-    with sqlite3.connect(db_path) as conn:
-        events = pd.read_sql("SELECT * FROM events", conn, parse_dates=["event_time"])
+    events = pd.read_csv(events_path, parse_dates=["event_time"])
 
 
     date_cols = [
@@ -60,7 +58,6 @@ def load_data():
         if col in tenant_scores.columns:
             tenant_scores[col] = pd.to_datetime(tenant_scores[col], errors="coerce")
     events["event_date"] = pd.to_datetime(events["event_time"]).dt.normalize()
-
 
     return tenant_scores, events
 
