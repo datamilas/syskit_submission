@@ -82,7 +82,7 @@ The exported feature store is:
 
 ## 2. Customer Analytics
 
-The brief asked for a customer health score, an at-risk cohort, and a usage trend view over the last 8 to 12 weeks. These are implemented in `notebooks/02_health_score_and_feature_store.ipynb` and surfaced in the dashboard.
+The brief asked for a customer health score, an at-risk cohort, and a usage trend view over the last 8 to 12 weeks. These are implemented in `notebooks/02_health_score_and_feature_store.ipynb` and shown in the dashboard https://syskit.streamlit.app/.
 
 ### Approach
 I analyzed tenants that churned before the telemetry cutoff to understand how behavior changes before churn and how far before contract renewal churn typically happens. Those findings were then converted into a health score and operational flags for tenants that are still active at the snapshot date.
@@ -214,6 +214,9 @@ The combined score is:
 The brief asked for a live or shareable, self-explanatory, and actionable dashboard. 
 
 The dashboard source is in `dashboard/streamlit_app.py`, and the dashboard is published on Streamlit Community Cloud.
+
+Deployed dashboard:
+- `https://syskit.streamlit.app/`
 
 ### What the Dashboard Answers
 - Health and renewal distribution across the base
