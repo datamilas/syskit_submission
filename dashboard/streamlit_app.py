@@ -4,7 +4,8 @@ import streamlit as st
 import altair as alt
 import re
 import sqlite3
-from pathlib import PatH
+from pathlib import Path
+
 
 APP_TITLE = "Syskit Customer Base Dashboard"
 APP_SUBTITLE = "Snapshot: 2024-06-29"
