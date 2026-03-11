@@ -128,6 +128,7 @@ From `results/tenant_scores_snapshot_2024_06_30.csv`:
 
 ### Usage Trend
 The 12-week usage trend is shown in the dashboard and can be filtered by customer segment. It supports both total usage and value-event usage views.
+Usage trends behave as expected across health segments: critical accounts show low and declining usage, watchlist accounts still show relatively high usage but are trending downward, stable accounts maintain consistently high usage, and strong accounts show high usage that continues to grow.
 
 ## 3. Predictive Model
 
@@ -140,7 +141,7 @@ The brief required at least one predictive model, a clear explanation of metric 
 
 I chose churn prediction because churn is the cleanest business outcome in the dataset with an observable timestamp. Other candidate targets such as upsell or trial conversion do not have equally reliable labels here.
 
-I used logistic regression because the active-snapshot sample is small and the model is stable, interpretable, and appropriate for a first operational scoring layer. Cross-validation makes better use of the available data than a simple single train/test split.
+I used logistic regression because the active-snapshot sample is small, and logistic regression tends to perform more reliably and remain more stable than more complex models in that setting. Cross-validation makes better use of the available data than a simple single train/test split.
 
 Another advantage of logistic regression is its interpretability (see the Coefficient Interpretation section below).
 
@@ -216,13 +217,15 @@ The brief asked for a live or shareable, self-explanatory, and actionable dashbo
 The dashboard source is in `dashboard/streamlit_app.py`, and the dashboard is published on Streamlit Community Cloud.
 
 Deployed dashboard:
-- `https://syskit.streamlit.app/`
+- https://syskit.streamlit.app/
 
 ### What the Dashboard Answers
 - Health and renewal distribution across the base
 - 12-week usage trend by health segment
 - Customer Success queues for at-risk and quiet accounts
 - Expansion candidate list for Sales and Customer Success
+- The dashboard can be filtered across multiple dimensions
+- Each CSM can filter to their own accounts to get a clear view of their portfolio
 
 ## 6. Executive Summary
 
